@@ -63,11 +63,9 @@ class PositionsPasswordPolicy(DefaultPasswordPolicy):
 
 class PasswordListEntry:
   def __init__(self, line):
-    (policy, password) = line.split(': ')
-    (rng, char) = policy.split(' ')
+    (policy, self.password) = line.split(': ')
+    (rng, self.char) = policy.split(' ')
     (self.policy_x, self.policy_y) = tuple([int(x) for x in rng.split('-')])
-    self.char = char
-    self.password = password
 
   def is_valid(self):
     return self.policy_cls.validate(self.password)
