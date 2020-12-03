@@ -81,10 +81,6 @@ class PasswordList:
   def count_valid(self):
     return [self.policy_cls.validate(entry) for entry in self._passwords].count(True)
 
-def parse_password_file(filename):
-  with open(filename, 'r') as f:
-    return [PasswordListEntry(line) for line in f.readlines()]
-
 if __name__ == '__main__':
   parser = argparse.ArgumentParser(description=__doc__, epilog=DefaultPasswordPolicy.get_choice_descriptions(), formatter_class=argparse.RawTextHelpFormatter)
   parser.add_argument('filename', help='Path to the input file to process')
